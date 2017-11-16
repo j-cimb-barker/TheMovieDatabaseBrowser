@@ -54,6 +54,10 @@ class MasterViewController: UITableViewController {
             if errorStr != "" {
                 self.showErrorMessage(msg: errorStr)
             }
+            
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
         }
         
         TheMovieDatabaseApi.getNewMoviesInTheatreBlock { (movies : [Movie], errorStr: String) in
@@ -70,6 +74,10 @@ class MasterViewController: UITableViewController {
             if errorStr != "" {
                 self.showErrorMessage(msg: errorStr)
             }
+            
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
+            }
         }
         
         TheMovieDatabaseApi.getTopRatedMoviesThisYearBlock { (movies : [Movie], errorStr: String) in
@@ -81,10 +89,14 @@ class MasterViewController: UITableViewController {
             self.checkFinishedDownloading()
 
             
-            Logging.JLog(message: "popularMovies : \(self.ratedMovies.count)")
+            Logging.JLog(message: "ratedMovies : \(self.ratedMovies.count)")
             
             if errorStr != "" {
                 self.showErrorMessage(msg: errorStr)
+            }
+            
+            DispatchQueue.main.async { [unowned self] in
+                self.tableView.reloadData()
             }
         }
         
@@ -115,13 +127,17 @@ class MasterViewController: UITableViewController {
         
         DispatchQueue.main.async { [unowned self] in
             
+            Logging.JLog(message: "allFinished")
+            
             if (self.ratedMovies.count > 0) && (self.popularMovies.count > 0) && (self.newMovies.count > 0) {
-                
+                self.tableView.reloadData()
                 UIApplication.shared.isNetworkActivityIndicatorVisible = false
             }
         }
     }
     
+    
+
 
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed

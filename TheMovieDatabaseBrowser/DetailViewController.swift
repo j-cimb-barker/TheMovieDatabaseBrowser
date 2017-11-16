@@ -40,7 +40,7 @@ class DetailViewController: UIViewController {
         // https://developers.themoviedb.org/3/configuration
         let imgUrlStr = "https://image.tmdb.org/t/p/w500/" + movie.posterPath
         
-        self.title = "";
+        //self.title = "";
         
         // TODO : would be nice to have default image for movies that don't have images
         moviePosterImageView.imageFromServerURL(urlString: imgUrlStr)
