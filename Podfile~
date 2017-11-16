@@ -2,4 +2,4 @@
 target 'TheMovieDatabaseBrowser'
 
 use_frameworks!
-pod 'Countly'
+#pod 'Countly'

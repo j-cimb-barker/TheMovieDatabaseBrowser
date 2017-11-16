@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Countly
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -16,6 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        let countlyId = "d5c18c873087fa8c3aa7459c833eed7ec148dab1"
+        
+        let config = CountlyConfig ()
+        
+        config.appKey = countlyId
+        
+        config.deviceID = CLYIDFV
+        
+        config.host = "https://talkingcucumber.net"
+        config.features = [
+                CLYCrashReporting,
+                CLYAutoViewTracking,
+        ];
+
+        Countly.sharedInstance().start(with: config)
+        
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+        let dict = ["appVersion" : version!] as [NSObject : AnyObject]
+        
+        Countly.sharedInstance().recordEvent("appStarted", segmentation: dict, count: 1)
+
 
         // Override point for customization after application launch.
         let splitViewController = window!.rootViewController as! UISplitViewController

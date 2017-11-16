@@ -1,3 +1,14 @@
-PODFILE CHECKSUM: a8c473bf75db7d17b6cbec61cdc5a1d110721e3f
+PODS:
+  - Countly (17.09):
+    - Countly/NotificationService (= 17.09)
+  - Countly/NotificationService (17.09)
 
-COCOAPODS: 1.2.1
+DEPENDENCIES:
+  - Countly
+
+SPEC CHECKSUMS:
+  Countly: b2e051be5826a45ca7d93f6ed3e63a86be864460
+
+PODFILE CHECKSUM: a6c9581072786eacdf9825f0cf9e365cd5ad9294
+
+COCOAPODS: 1.2.0
